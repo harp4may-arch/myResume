@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>신승연 | MAY SHIN</title>
+  <style>
+    :root {
+      --fg: #1d1d1f;
+      --fg2: #6e6e73;
+      --fg3: #b8b8bd;
+      --bg: #ffffff;
+      --bg2: #f5f5f7;
+      --blue: #0071e3;
+      --blue-light: #e8f1fb;
+      --border: #d2d2d7;
+      --gold: #b8860b;
+      --gold-bg: #fdf8ef;
+      --radius: 18px;
+      --radius-sm: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, 'SF Pro Display', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 52px;
+    }
+
+    .nav-name {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--fg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--fg2);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--fg); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg2);
+      padding: 96px 48px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 72px;
+    }
+
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    .hero-body { max-width: 520px; }
+
+    .hero-body h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+
+    .hero-en {
+      font-size: 0.95rem;
+      color: var(--fg2);
+      letter-spacing: 4px;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    .hero-desc {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: var(--fg2);
+      line-height: 1.8;
+    }
+
+    .hero-contact {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .contact-chip {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      color: var(--fg2);
+    }
+
+    /* ── STAT BAR ── */
+    .stat-bar {
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      padding: 28px 56px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--fg);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--fg2);
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── SECTION ── */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+      padding-top: 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .section-heading {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      margin-bottom: 40px;
+    }
+
+    /* ── META GRID ── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .meta-card {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .meta-card-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--fg2);
+      margin-bottom: 20px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.83rem;
+      color: var(--fg);
+    }
+
+    .cert-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cert-row:last-child { border-bottom: none; }
+    .cert-row-name { font-weight: 600; font-size: 0.92rem; }
+    .cert-row-date { font-size: 0.8rem; color: var(--fg2); }
+
+    /* ── TABS ── */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      background: var(--bg2);
+      border-radius: 100px;
+      padding: 4px;
+      width: fit-content;
+      margin-bottom: 40px;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 28px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--fg2);
+      transition: background 0.2s, color 0.2s;
+      font-family: inherit;
+    }
+
+    .tab-btn.active {
+      background: var(--bg);
+      color: var(--fg);
+      font-weight: 600;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; gap: 48px; }
+
+    .tl-company {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+    }
+
+    .tl-left {}
+
+    .tl-company-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--fg);
+      line-height: 1.4;
+    }
+
+    .tl-period {
+      font-size: 0.8rem;
+      color: var(--blue);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .tl-role {
+      font-size: 0.78rem;
+      color: var(--fg2);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .tl-right {}
+
+    .tl-intro {
+      font-size: 0.88rem;
+      color: var(--fg2);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin-bottom: 10px;
+    }
+
+    .project-card:last-child { margin-bottom: 0; }
+
+    .project-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-card-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .project-card-period {
+      font-size: 0.78rem;
+      color: var(--fg3);
+      flex-shrink: 0;
+    }
+
+    .project-card-desc {
+      margin-top: 8px;
+      font-size: 0.84rem;
+      color: var(--fg2);
+      line-height: 1.7;
+    }
+
+    .project-card ul {
+      margin-top: 8px;
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .project-card ul li {
+      font-size: 0.83rem;
+      color: var(--fg2);
+      padding: 2px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--gold-bg);
+      border: 1px solid #e2c97e;
+      color: var(--gold);
+      padding: 3px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .tl-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 8px 0 24px;
+    }
+
+    /* ── EDU ── */
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-row:last-child { border-bottom: none; }
+
+    .edu-school { font-size: 1rem; font-weight: 600; }
+    .edu-major { font-size: 0.85rem; color: var(--fg2); margin-top: 3px; }
+    .edu-period { font-size: 0.82rem; color: var(--blue); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.8rem;
+      color: var(--fg3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { flex-direction: column; gap: 32px; padding: 64px 24px 48px; text-align: center; }
+      .hero-contact { justify-content: center; }
+      .hero-body h1 { font-size: 2.4rem; }
+      .stat-item { padding: 20px 28px; }
+      .stat-value { font-size: 1.3rem; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .tl-company { grid-template-columns: 1fr; gap: 12px; }
+      .section-heading { font-size: 1.5rem; }
+    }
+
+    /* ── Print button ── */
+    .btn-print {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-print:hover {
+      background: var(--bg2);
+      border-color: #aeaeb2;
+    }
+
+    /* ── Print-only combined view (hidden on screen) ── */
+    #print-view { display: none; }
+
+    /* ── Role label badges in print view ── */
+    .role-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 1px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .role-pm   { background: #e8f1fb; color: #0071e3; }
+    .role-plan { background: #f0faf0; color: #2a7a2a; }
+
+    /* ── Print styles ── */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+
+      nav, .btn-print, footer { display: none !important; }
+
+      body { background: #fff; }
+
+      .hero {
+        padding: 20px 0 16px;
+        gap: 28px;
+        background: #f5f5f7;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .hero-photo { width: 100px; height: 100px; }
+      .hero-body h1 { font-size: 2.2rem; }
+      .hero-desc { font-size: 0.85rem; }
+
+      .stat-bar {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .stat-item { padding: 12px 28px; }
+      .stat-value { font-size: 1.2rem; }
+
+      section { padding: 16px 0; }
+      section + section { padding-top: 14px; }
+
+      .meta-grid { gap: 10px; }
+      .meta-card { padding: 14px; }
+
+      /* 화면용 탭은 완전히 숨김 */
+      .tab-nav, .tab-content { display: none !important; }
+
+      /* 인쇄용 통합 뷰 표시 */
+      #print-view { display: block !important; }
+
+      #print-view .tl-company {
+        gap: 16px;
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+      }
+
+      .project-card { padding: 8px 12px; margin-bottom: 5px; }
+      .project-card-name { font-size: 0.88rem; }
+      .project-card-desc { font-size: 0.8rem; }
+
+      .tl-intro { font-size: 0.82rem; margin-bottom: 8px; }
+      .tl-company-name { font-size: 0.95rem; }
+      .tl-period { font-size: 0.75rem; }
+      .tl-role { font-size: 0.72rem; }
+
+      .section-heading { font-size: 1.3rem; margin-bottom: 16px; }
+      .badge { font-size: 0.72rem; padding: 2px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-name">신승연 · MAY SHIN</div>
+    <ul class="nav-links">
+      <li><a href="#skills">역량</a></li>
+      <li><a href="#experience">경력</a></li>
+      <li><a href="#education">학력</a></li>
+    </ul>
+    <button class="btn-print" onclick="window.print()">인쇄</button>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <img src="my pic.png" alt="신승연" class="hero-photo">
+    <div class="hero-body">
+      <h1>신승연</h1>
+      <div class="hero-en">MAY SHIN</div>
+      <p class="hero-desc">
+        다양한 도메인 프로젝트 PM · 금융 UXUI 컨설팅 전문가<br>
+        10년 이상 대규모 프로젝트 리딩, 다중 이해관계자 조율,<br>노련한 리스크 관리
+      </p>
+      <div class="hero-contact">
+        <span class="contact-chip">010-3769-9816</span>
+        <span class="contact-chip">idmaybe@naver.com</span>
+        <span class="contact-chip">서울 은평구 구산동</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stat bar -->
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-value">18년</div>
+      <div class="stat-label">총 경력</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">15년</div>
+      <div class="stat-label">관련 경력</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">4개</div>
+      <div class="stat-label">주요 도메인</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">PMP</div>
+      <div class="stat-label">대표 자격증</div>
+    </div>
+  </div>
+
+  <!-- Skills & Certs -->
+  <section id="skills">
+    <div class="section-eyebrow">역량</div>
+    <div class="section-heading">Skills &amp; Certificates</div>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-card-title">Tools &amp; Skills</div>
+        <div class="tag-list">
+          <span class="tag">JIRA</span>
+          <span class="tag">Slack</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Zeplin</span>
+          <span class="tag">Notion</span>
+          <span class="tag">데이터 분석</span>
+          <span class="tag">비즈니스 영어</span>
+          <span class="tag">UXUI 컨설팅</span>
+          <span class="tag">서비스 로드맵</span>
+          <span class="tag">이해관계자 조율</span>
+          <span class="tag">리스크 관리</span>
+        </div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-title">Certificates</div>
+        <div class="cert-row">
+          <span class="cert-row-name">PMP</span>
+          <span class="cert-row-date">2011.04 획득 / 2026.04 갱신</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-row-name">ADsP</span>
+          <span class="cert-row-date">2024.09</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-row-name">OPic 영어 IH</span>
+          <span class="cert-row-date">2024.12</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="section-eyebrow">경력</div>
+    <div class="section-heading">Experience</div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'pm')">PM 경력</button>
+      <button class="tab-btn" onclick="switchTab(this,'plan')">기획 경력</button>
+    </div>
+
+    <!-- ===== PM ===== -->
+    <div class="tab-content active" id="tab-pm">
+      <div class="timeline">
+
+        <!-- AK아이에스 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">AK아이에스</div>
+            <div class="tl-period">2026.05 – 현재</div>
+            <div class="tl-role">사업개발팀<br>제안 · PM</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">한국 공항공사 차세대 SKY-POS개발 사업 제안</span>
+                <span class="project-card-period">2026.06</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">LG인화원 교육운영시스템 구축 제안</span>
+                <span class="project-card-period">2026.05</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CJ OliveNetworks -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">씨제이올리브네트웍스</div>
+            <div class="tl-period">2018.06 – 2025.10</div>
+            <div class="tl-role">Professional (부장)<br>PM · CJ PAY PO · 서비스 기획</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ PAY PO</span>
+                <span class="project-card-period">2023.10 – 2025.10</span>
+              </div>
+              <p class="project-card-desc">사업 종료 예정이었던 CJ PAY 리포지셔닝 추진. 서비스 운영·기능 정상화, 오픈뱅킹·문화상품권 충전 등 결제수단 다각화 성공.</p>
+              <div class="badge">2024년 7월 기준 가입자 2만 확보</div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">서빙로봇 기반 매장관리시스템 신규 개발</span>
+                <span class="project-card-period">2022.01 – 2023.01</span>
+              </div>
+              <p class="project-card-desc">기획/개발/사업 총괄, 론칭 성공 및 장기 사업화 승인 획득.</p>
+              <ul>
+                <li>서빙로봇+호출벨+원격호출 시스템 — CJ제일제당 몽중헌 8개 매장, 바비레드 수원·고양</li>
+                <li>태블릿 주문 자동화+서빙로봇 연계 POC — 프레시웨이 성남의료원 장례식장</li>
+              </ul>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">대한통운 구매정산 시스템 2차 구축 / 자산관리 시스템 신규 구축 PM</span>
+                <span class="project-card-period">2021.05 – 2022.01</span>
+              </div>
+              <div class="badge">전직원 사용률 1차 구축 대비 150% 증가</div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ ENM 2020 MAMA 투표시스템 구축 PM</span>
+                <span class="project-card-period">2020.08 – 2021.01</span>
+              </div>
+              <p class="project-card-desc">새 BI·디자인 콘셉 적용 완료, 기간 내 정상 론칭.</p>
+              <div class="badge">누적 투표 1,600% 이상 확대 (2억 27만 → 5억 31만 동시접속)</div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">대한통운 나인브릿지 스타빌 홈페이지&amp;예약 시스템 신규 구축 PM</span>
+                <span class="project-card-period">2019.12 – 2020.03</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ제일제당 쿡킷(COOKIT) 커머스 웹/앱 신규 구축</span>
+                <span class="project-card-period">2018.07 – 2019.07</span>
+              </div>
+              <p class="project-card-desc">iOS/AOS 커머스 플랫폼 UXUI 총괄.</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ그룹 KCON CulturePlex LA 이벤트 사이트 구축·운영 총괄</span>
+                <span class="project-card-period">2018.06 – 2018.07</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flip -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">플립커뮤니케이션즈 — eBiz그룹</div>
+            <div class="tl-period">2011.07 – 2014.01</div>
+            <div class="tl-role">수석 · PM, 기획PL</div>
+          </div>
+          <div class="tl-right">
+            <p class="tl-intro">입사 후 6개월 만에 기획PL → PM 발령. 금융·커머스·브랜드 대형 프로젝트 다수 PM 수행.</p>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">IKEA 홈페이지 구축 PM</span>
+                <span class="project-card-period">2014</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">현대카드 카드신청 마이크로사이트/모바일 개편 PM</span>
+                <span class="project-card-period">2014</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">키움증권 펀드슈퍼마켓 구축</span>
+                <span class="project-card-period">2013</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">ING생명 태블릿 SFA</span>
+                <span class="project-card-period">2013</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">교보생명 SFA UX/UI 화면 개발 파트 PL</span>
+                <span class="project-card-period">2011 – 2012</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">동아제약 신규브랜드 danke 홈페이지 구축 PM</span>
+                <span class="project-card-period">2011</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 이움 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">이움디지털</div>
+            <div class="tl-period">2010.05 – 2011.06</div>
+            <div class="tl-role">대리 · PM, 기획PL, 웹기획</div>
+          </div>
+          <div class="tl-right">
+            <p class="tl-intro">SI 사업 수행 및 자사 서비스 기획/운영 담당. 매일경제신문, 한국농어촌공사 등 기관 대상 SI 프로젝트 PM.</p>
+          </div>
+        </div>
+
+        <!-- G1230 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">G1230외고박사 / P-Turn Education</div>
+            <div class="tl-period">2007.01 – 2010.05</div>
+            <div class="tl-role">대리 · SI 사업수행 PM 및 기획</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">매일경제TV(mbn.mk.co.kr) 리뉴얼 프로젝트 기획 및 진행</span>
+                <span class="project-card-period">2011</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">한국농어촌 여행 아이폰 App. 기획</span>
+                <span class="project-card-period">2010</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">한국플랜트 산업협회 채용포털·홈페이지·학사 관리시스템 리뉴얼</span>
+                <span class="project-card-period">2010</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 기획 ===== -->
+    <div class="tab-content" id="tab-plan">
+      <div class="timeline">
+
+        <!-- AK아이에스 기획 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">AK아이에스</div>
+            <div class="tl-period">2026.05 – 현재</div>
+            <div class="tl-role">사업개발팀<br>제안 · PM</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">한국 공항공사 차세대 SKY-POS개발 사업 제안</span>
+                <span class="project-card-period">2026.06</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">LG인화원 교육운영시스템 구축 제안</span>
+                <span class="project-card-period">2026.05</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CJ OliveNetworks 기획 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">씨제이올리브네트웍스</div>
+            <div class="tl-period">2018.06 – 2025.10</div>
+            <div class="tl-role">Professional (부장)<br>CJ ONE 기획 · UXUI 총괄 · 신사업 기획</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ ONE 플랫폼 리뉴얼 추진 및 신규 서비스 기획</span>
+                <span class="project-card-period">2023.04 – 2024.01</span>
+              </div>
+              <p class="project-card-desc">4년간 실행되지 못했던 플랫폼 리뉴얼 방안 수립 및 1차 승인 획득. 쿠폰 사용률 분석 기반 서비스 개선 POC 진행.</p>
+              <div class="badge">전년대비 쿠폰 사용률 16.4% 확대</div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">공간 DX Lab — 로봇기반 신사업 기획</span>
+                <span class="project-card-period">2023.01 – 2023.03</span>
+              </div>
+              <p class="project-card-desc">신규 로봇기반 매장관리 솔루션과 그룹 내 자산·IP 활용을 통한 신규사업 기획 수립.</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ PAY 장기 사업 계획 / 서비스 로드맵 수립</span>
+                <span class="project-card-period">2023.10 – 2025.10</span>
+              </div>
+              <p class="project-card-desc">플랫폼 내 킬러서비스 확대 가능한 기반 마련. 오픈뱅킹 도입 등 결제처 다각화 기획.</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ 그룹 계열사 UXUI 총괄 PL</span>
+                <span class="project-card-period">2018.06 – 2021.12</span>
+              </div>
+              <p class="project-card-desc">CJ지주사, 제일제당, 대한통운, ENM, 프레시웨이 등 주요 계열사 사업 수행. 그룹 내 UXUI 전문성 강화에 기여.</p>
+              <ul>
+                <li>COOKIT 커머스 앱 UXUI 총괄 (2018~2019)</li>
+                <li>CJ ENM MAMA 2020 투표시스템 UXUI 총괄 (2020~2021)</li>
+                <li>CJ그룹 KCON CulturePlex LA 이벤트 사이트 운영 총괄 (2018)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flip 전략기획실 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">플립커뮤니케이션즈 — 전략기획실</div>
+            <div class="tl-period">2014.01 – 2018.05</div>
+            <div class="tl-role">수석 · 제안PM · 금융 UXUI 컨설팅</div>
+          </div>
+          <div class="tl-right">
+            <p class="tl-intro">금융사 특화 UXUI 컨셉 도출 및 프로토타입 기반 제안PT. 연 제안매출 60억 중 12억 담당. 보험사·은행 분야에서 두드러진 성과.</p>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">IBK기업은행 로보어드바이저 시스템 구축 제안</span>
+                <span class="project-card-period">2018</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">삼성생명 대표 홈페이지 구축 제안</span>
+                <span class="project-card-period">2018</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">ING생명 TLC프로젝트 — 모바일 영업지원 시스템 통합 UX컨설팅</span>
+                <span class="project-card-period">2017</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">현대라이프생명 연간 운영 제안</span>
+                <span class="project-card-period">2017</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">KB손해보험 대표 홈페이지 구축 PM/컨설팅</span>
+                <span class="project-card-period">2016</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">IBK기업은행 옴니채널 서비스 컨설팅</span>
+                <span class="project-card-period">2016</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">AIA생명 모바일 SFA 리뉴얼 제안</span>
+                <span class="project-card-period">2015</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">씨티은행 홈페이지 개편 제안</span>
+                <span class="project-card-period">2015</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">대신증권 리뉴얼 / 그룹사 사이트 구축 제안</span>
+                <span class="project-card-period">2014</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">교보생명 라이프 플래닛 웹사이트 구축 / 모바일웹 컨설팅</span>
+                <span class="project-card-period">2013</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- G1230 기획 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">G1230외고박사 / P-Turn Education</div>
+            <div class="tl-period">2007.01 – 2010.05</div>
+            <div class="tl-role">대리 · 자사 서비스 기획/구축/운영</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">캐스트노드닷컴(castnode.com) 기획 및 운영</span>
+                <span class="project-card-period">2011</span>
+              </div>
+              <p class="project-card-desc">정치 트위터 모음 서비스 자체 기획·개발·론칭.</p>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">이노탱크(innotank.com) 기획 및 운영</span>
+                <span class="project-card-period">2010 – 2011</span>
+              </div>
+              <p class="project-card-desc">지식공유 사이트 자체 기획·개발·론칭.</p>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">외고박사닷컴 / 온라인 영어학습 사이트 e-oego.com 기획·운영</span>
+                <span class="project-card-period">2007 – 2010</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">아발론교육 · EnF English 온라인 학습사이트 커스터마이징/구축</span>
+                <span class="project-card-period">2009 – 2010</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 인쇄 전용 : 회사별 통합 경력 ===== -->
+    <div id="print-view">
+      <div class="timeline">
+
+        <!-- AK아이에스 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">AK아이에스</div>
+            <div class="tl-period">2026.05 – 현재</div>
+            <div class="tl-role">사업개발팀 · 제안 · PM</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">한국 공항공사 차세대 SKY-POS개발 사업 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2026.06</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">LG인화원 교육운영시스템 구축 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2026.05</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 씨제이올리브네트웍스 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">씨제이올리브네트웍스</div>
+            <div class="tl-period">2018.06 – 2025.10</div>
+            <div class="tl-role">Professional (부장)<br>PM · CJ PAY PO · 서비스 기획</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ PAY PO<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2023.10 – 2025.10</span>
+              </div>
+              <p class="project-card-desc">사업 종료 예정이었던 CJ PAY 리포지셔닝 추진. 서비스 운영·기능 정상화, 오픈뱅킹·문화상품권 충전 등 결제수단 다각화 성공.</p>
+              <div class="badge">2024년 7월 기준 가입자 2만 확보</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ PAY 장기 사업 계획 / 서비스 로드맵 수립<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2023.10 – 2025.10</span>
+              </div>
+              <p class="project-card-desc">플랫폼 내 킬러서비스 확대 가능한 기반 마련. 오픈뱅킹 도입 등 결제처 다각화 기획.</p>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ ONE 플랫폼 리뉴얼 추진 및 신규 서비스 기획<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2023.04 – 2024.01</span>
+              </div>
+              <p class="project-card-desc">4년간 실행되지 못했던 플랫폼 리뉴얼 방안 수립 및 1차 승인 획득. 쿠폰 사용률 분석 기반 서비스 개선 POC 진행.</p>
+              <div class="badge">전년대비 쿠폰 사용률 16.4% 확대</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">공간 DX Lab — 로봇기반 신사업 기획<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2023.01 – 2023.03</span>
+              </div>
+              <p class="project-card-desc">신규 로봇기반 매장관리 솔루션과 그룹 내 자산·IP 활용을 통한 신규사업 기획 수립.</p>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">서빙로봇 기반 매장관리시스템 신규 개발 및 고객 발굴<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2022.01 – 2023.01</span>
+              </div>
+              <p class="project-card-desc">기획/개발/사업 총괄, 론칭 성공 및 장기 사업화 승인 획득.</p>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">대한통운 구매정산 시스템 2차 구축 / 자산관리 시스템 신규 구축 PM<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2021.05 – 2022.01</span>
+              </div>
+              <div class="badge">전직원 사용률 1차 구축 대비 150% 증가</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ 그룹 계열사 UXUI 총괄 PL<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2018.06 – 2021.12</span>
+              </div>
+              <p class="project-card-desc">CJ지주사, 제일제당, 대한통운, ENM, 프레시웨이 등 주요 계열사 사업 수행. 그룹 내 UXUI 전문성 강화에 기여.</p>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ ENM 2020 MAMA 투표시스템 구축 PM<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2020.08 – 2021.01</span>
+              </div>
+              <div class="badge">누적 투표 1,600% 이상 확대 (2억 27만 → 5억 31만 동시접속)</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">대한통운 나인브릿지 스타빌 홈페이지&amp;예약 시스템 신규 구축 PM<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2019.12 – 2020.03</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ제일제당 쿡킷(COOKIT) 커머스 웹/앱 신규 구축<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2018.07 – 2019.07</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">CJ그룹 KCON CulturePlex LA 이벤트 사이트 구축·운영 총괄<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2018.06 – 2018.07</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 플립커뮤니케이션즈 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">플립커뮤니케이션즈</div>
+            <div class="tl-period">2011.07 – 2018.05</div>
+            <div class="tl-role">수석<br>제안PM · UXUI컨설팅 · PM · 기획PL</div>
+          </div>
+          <div class="tl-right">
+            <p class="tl-intro">전략기획실 (2014~2018): 금융사 특화 UXUI 컨셉 도출 및 프로토타입 기반 제안PT. 연 제안매출 60억 중 12억 담당.</p>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">IBK기업은행 로보어드바이저 시스템 구축 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2018</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">삼성생명 대표 홈페이지 구축 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2018</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">ING생명 TLC프로젝트 — 모바일 영업지원 시스템 통합 UX컨설팅<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2017</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">현대라이프생명 연간 운영 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2017</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">KB손해보험 대표 홈페이지 구축 PM/컨설팅<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2016</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">IBK기업은행 옴니채널 서비스 컨설팅<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2016</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">AIA생명 모바일 SFA 리뉴얼 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2015</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">씨티은행 홈페이지 개편 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2015</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">대신증권 리뉴얼 / 그룹사 사이트 구축 제안<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2014</span>
+              </div>
+            </div>
+            <p class="tl-intro" style="margin-top:14px;">eBiz그룹 (2011~2014): 입사 후 6개월 만에 기획PL → PM 발령. 금융·커머스·브랜드 대형 프로젝트 PM 수행.</p>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">IKEA 홈페이지 구축 PM<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2014</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">현대카드 카드신청 마이크로사이트/모바일 개편 PM<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2014</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">교보생명 라이프 플래닛 웹사이트 구축 / 모바일웹 컨설팅<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2013</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">키움증권 펀드슈퍼마켓 구축<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2013</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">ING생명 태블릿 SFA<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2013</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">금호타이어 홈페이지<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2012</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">교보생명 SFA UX/UI 화면 개발 파트 PL<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2011 – 2012</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">동아제약 신규브랜드 danke 홈페이지 구축 PM<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2011</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 이움디지털 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">이움디지털</div>
+            <div class="tl-period">2010.05 – 2011.06</div>
+            <div class="tl-role">대리 · PM, 기획PL, 웹기획</div>
+          </div>
+          <div class="tl-right">
+            <p class="tl-intro">SI 사업 수행 및 자사 서비스 기획/운영 담당. 매일경제신문, 한국농어촌공사 등 기관 대상 SI 프로젝트 PM.</p>
+          </div>
+        </div>
+
+        <!-- G1230 -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-company-name">G1230외고박사 / P-Turn Education</div>
+            <div class="tl-period">2007.01 – 2010.05</div>
+            <div class="tl-role">대리 · SI 사업수행 PM 및 기획</div>
+          </div>
+          <div class="tl-right">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">매일경제TV(mbn.mk.co.kr) 리뉴얼 프로젝트 기획 및 진행<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2011</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">캐스트노드닷컴(castnode.com) 기획 및 운영<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2011</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">한국농어촌 여행 아이폰 App. 기획<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2010</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">한국플랜트 산업협회 채용포털·홈페이지·학사 관리시스템 리뉴얼<span class="role-label role-pm">PM</span></span>
+                <span class="project-card-period">2010</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">이노탱크(innotank.com) 기획 및 운영<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2010 – 2011</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">아발론교육 · EnF English 온라인 학습사이트 커스터마이징/구축<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2009 – 2010</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-card-name">외고박사닷컴 / 온라인 영어학습 사이트 e-oego.com 기획·운영<span class="role-label role-plan">기획</span></span>
+                <span class="project-card-period">2007 – 2010</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="section-eyebrow">학력</div>
+    <div class="section-heading">Education</div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-school">성균관대학교</div>
+        <div class="edu-major">영어영문 / 신문방송학과 복수전공 졸업</div>
+      </div>
+      <div class="edu-period">1999.03 – 2005.02</div>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-school">예일여자고등학교</div>
+        <div class="edu-major">인문계 졸업</div>
+      </div>
+      <div class="edu-period">1996.03 – 1999.02</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 신승연 · MAY SHIN</p>
+  </footer>
+
+  <script>
+    function switchTab(btn, tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
